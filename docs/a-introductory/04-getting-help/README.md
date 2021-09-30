@@ -187,33 +187,176 @@ Find all the info you need in the man-pages. Make sure to comment the commands y
 
 Mark challenges using a ✅ once they are finished.
 
-### ❌ The free command
+### ✅ The free command
 
 *Describe in your own words what the `free` command does. Give an example and a partial output.*
 
-### ❌ The id command
+```bash
+[jensva@LEGION-Y540-JENS][~]$ man free
+```
+
+It displays the amount of used and free space left on the system.
+
+```bash
+[jensva@LEGION-Y540-JENS][~]$ free
+```
+
+Output:
+
+```text
+              total        used        free      shared  buff/cache   available
+Mem:       13025992       94128    12569540          72      362324    12681356
+Swap:       4194304           0     4194304
+```
+
+### ✅ The id command
 
 *Describe in your own words what the `id` command does. Give an example and a partial output.*
 
-### ❌ The tree command
+```bash
+[jensva@LEGION-Y540-JENS][~]$ man id
+```
+
+It gives info about the user of the system.
+
+```bash
+[jensva@LEGION-Y540-JENS][~]$ id
+```
+
+Output:
+
+```text
+uid=1000(jensva) gid=1000(jensva) groups=1000(jensva),4(adm),20(dialout),24(cdrom),25(floppy),27(sudo),29(audio),30(dip),44(video),46(plugdev),117(netdev)
+```
+
+### ✅ The tree command
 
 *Describe in your own words what the `tree` command does. How do you list all subdirectories too? How can you only include directories? If the `tree` command is not available on your system you can install it using `sudo apt install tree`*
 
-### ❌ The which command
+```bash
+[jensva@LEGION-Y540-JENS][~]$ man tree
+```
+
+It lists all the directories in the form of a tree. (Just like a family tree)
+
+To list all the subdirectories:
+
+```bash
+[jensva@LEGION-Y540-JENS][~]$ tree
+```
+
+Output (-a added for content):
+
+```text
+.
+├── .bash_history
+├── .bash_logout
+├── .bashrc
+├── .config
+│   └── wslu
+│       └── oemcp
+├── .landscape
+│   └── sysinfo.log
+├── .motd_shown
+├── .profile
+├── .sudo_as_admin_successful
+└── a.out
+```
+
+To include only directories:
+
+```bash
+[jensva@LEGION-Y540-JENS][~]$ tree -d
+```
+
+Output (-a added for content):
+
+```text
+.
+├── .config
+│   └── wslu
+└── .landscape
+```
+
+### ✅ The which command
 
 *Describe in your own words what the `which` command does. What is the result for `pwd` ?*
 
-### ❌ The file command
+```bash
+[jensva@LEGION-Y540-JENS][~]$ tree -d
+```
+
+It returns the links/pathnames of the given filename.
+
+```bash
+[jensva@LEGION-Y540-JENS][~]$ which pwd
+```
+
+Output:
+
+```text
+/usr/bin/pwd
+```
+
+### ✅ The file command
 
 *Describe in your own words what the `file` command does. What is the result for `~/.bashrc` ?*
 
-### ❌ The type command
+```bash
+[jensva@LEGION-Y540-JENS][~]$ man file
+```
+
+It returns the type of the file (text, executable, data...).
+
+```bash
+[jensva@LEGION-Y540-JENS][~]$ ~/.bashrc
+```
+
+Output:
+
+```text
+/home/jensva/.bashrc: ASCII text
+```
+
+### ✅ The type command
 
 *Describe in your own words what the `type` command does. What is the result for `ls` and what is the result for `g++` ?*
 
-### ❌ Counting lines and words
+```bash
+[jensva@LEGION-Y540-JENS][~]$ type --help
+```
+
+The type command gives info about a command type.
+
+Output:
+
+```text
+ls is aliased to `ls --color=auto'
+```
+
+```bash
+[jensva@LEGION-Y540-JENS][~]$ type g++
+```
+
+Output:
+
+```text
+g++ is /usr/bin/g++
+```
+
+### ✅ Counting lines and words
 
 *What command can be used to count lines and words in text? Give an example and explain the output.*
+
+```bash
+[jensva@LEGION-Y540-JENS][~]$ apropos count
+```
+
+Command:
+
+```bash
+[jensva@LEGION-Y540-JENS][~]$ wc 
+```
 
 ### ❌ The wget command
 
