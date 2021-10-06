@@ -195,7 +195,7 @@ Mark challenges using a ✅ once they are finished.
 [jensva@LEGION-Y540-JENS][~]$ man free
 ```
 
-It displays the amount of used and free space left on the system.
+Info out of man page → It displays the amount of used and free space left on the system.
 
 ```bash
 [jensva@LEGION-Y540-JENS][~]$ free
@@ -217,7 +217,7 @@ Swap:       4194304           0     4194304
 [jensva@LEGION-Y540-JENS][~]$ man id
 ```
 
-It gives info about the user of the system.
+Info out of man page → It gives info about the user of the system.
 
 ```bash
 [jensva@LEGION-Y540-JENS][~]$ id
@@ -237,7 +237,7 @@ uid=1000(jensva) gid=1000(jensva) groups=1000(jensva),4(adm),20(dialout),24(cdro
 [jensva@LEGION-Y540-JENS][~]$ man tree
 ```
 
-It lists all the directories in the form of a tree. (Just like a family tree)
+Info out of man page → It lists all the directories in the form of a tree. (Just like a family tree)
 
 To list all the subdirectories:
 
@@ -245,22 +245,23 @@ To list all the subdirectories:
 [jensva@LEGION-Y540-JENS][~]$ tree
 ```
 
-Output (-a added for content):
+Output:
 
 ```text
 .
-├── .bash_history
-├── .bash_logout
-├── .bashrc
-├── .config
-│   └── wslu
-│       └── oemcp
-├── .landscape
-│   └── sysinfo.log
-├── .motd_shown
-├── .profile
-├── .sudo_as_admin_successful
-└── a.out
+├── 1RHvwKQmejt
+├── 3D Objects
+│   └── desktop.ini
+├── AppData
+│   ├── Local
+│   │   ├── Adobe
+│   │   │   ├── ARM
+│   │   │   │   ├── Reader_19.010.20098
+│   │   │   │   ├── Reader_20.009.20067
+│   │   │   │   ├── Reader_20.009.20074
+│   │   │   │   ├── Reader_20.012.20041
+│   │   │   │   ├── Reader_20.012.20043
+│   │   │   │   ├── Reader_20.012.20048
 ```
 
 To include only directories:
@@ -273,9 +274,15 @@ Output (-a added for content):
 
 ```text
 .
-├── .config
-│   └── wslu
-└── .landscape
+├── 3D Objects
+├── AppData
+│   ├── Local
+│   │   ├── Adobe
+│   │   │   ├── ARM
+│   │   │   │   ├── Reader_19.010.20098
+│   │   │   │   ├── Reader_20.009.20067
+│   │   │   │   ├── Reader_20.009.20074
+│   │   │   │   ├── Reader_20.012.20041
 ```
 
 ### ✅ The which command
@@ -283,10 +290,10 @@ Output (-a added for content):
 *Describe in your own words what the `which` command does. What is the result for `pwd` ?*
 
 ```bash
-[jensva@LEGION-Y540-JENS][~]$ tree -d
+[jensva@LEGION-Y540-JENS][~]$ man which
 ```
 
-It returns the links/pathnames of the given filename.
+Info out of man page → It returns the links/pathnames of the given filename.
 
 ```bash
 [jensva@LEGION-Y540-JENS][~]$ which pwd
@@ -306,7 +313,7 @@ Output:
 [jensva@LEGION-Y540-JENS][~]$ man file
 ```
 
-It returns the type of the file (text, executable, data...).
+Info out of man page → It returns the type of the file (text, executable, data...).
 
 ```bash
 [jensva@LEGION-Y540-JENS][~]$ ~/.bashrc
@@ -326,22 +333,22 @@ Output:
 [jensva@LEGION-Y540-JENS][~]$ type --help
 ```
 
-The type command gives info about a command type.
+Info out of help page → The type command gives info about a command type.
 
-Output:
+```bash
+[jensva@LEGION-Y540-JENS][~]$ type ls
+```
 
 ```text
-ls is aliased to `ls --color=auto'
+Output: ls is aliased to `ls --color=auto'
 ```
 
 ```bash
 [jensva@LEGION-Y540-JENS][~]$ type g++
 ```
 
-Output:
-
 ```text
-g++ is /usr/bin/g++
+Output: g++ is /usr/bin/g++
 ```
 
 ### ✅ Counting lines and words
@@ -352,35 +359,100 @@ g++ is /usr/bin/g++
 [jensva@LEGION-Y540-JENS][~]$ apropos count
 ```
 
-Command:
+Command (You should provide a filename):
 
 ```bash
-[jensva@LEGION-Y540-JENS][~]$ wc 
+[jensva@LEGION-Y540-JENS][~]$ wc Flowchart.docx
+```
+
+Output:
+
+```text
+47   276 14809 Flowchart.docx
 ```
 
 ### ❌ The wget command
 
 *How can you download a file from the Internet using the command line?. Find a file online to use it on and demonstrate its usage.*
 
-### ❌ The dmesg command
+```bash
+[jensva@LEGION-Y540-JENS][~]$ man wget
+```
+
+### ✅ The dmesg command
 
 *Describe in your own words what the `dmesg` command does. Give an example and a partial output.*
 
-### ❌ Checksums
+```bash
+[jensva@LEGION-Y540-JENS][~]$ man dmesg
+```
+
+Info out of man page → It prints messages related to operations from the kernal. The messages are stored in a ring buffer (new message comes in and pushes the oldest message away).
+
+Output:
+
+```text
+[    0.000000] Command line: initrd=\initrd.img panic=-1 pty.legacy_count=0 nr_cpus=12
+[    0.000000] KERNEL supported cpus:
+[    0.000000]   Intel GenuineIntel
+[    0.000000]   AMD AuthenticAMD
+[    0.000000]   Centaur CentaurHauls
+[    0.000000] x86/fpu: Supporting XSAVE feature 0x001: 'x87 floating point registers'
+[    0.000000] x86/fpu: Supporting XSAVE feature 0x002: 'SSE registers'
+[    0.000000] x86/fpu: Supporting XSAVE feature 0x004: 'AVX registers'
+```
+
+### ✅ Checksums
 
 *Go to the website of Raspberry Pi - [https://www.raspberrypi.org/software/operating-systems](https://www.raspberrypi.org/software/operating-systems) and download the Raspberry Pi OS image using the `wget` command line tool. Now check if the SHA-256 checksum complies with the one being advertised on the website.*
 
+```bash
+[jensva@LEGION-Y540-JENS][~]$ wget https://downloads.raspberrypi.org/raspios_lite_armhf/images/raspios_lite_armhf-2021-05-28/2021-05-07-raspios-buster-armhf-lite.zip
+```
+
 *What tool did you use to calculate the checksum? Demonstrate its usage.*
+
+```bash
+[jensva@LEGION-Y540-JENS][~]$ apropos checksum
+[jensva@LEGION-Y540-JENS][~]$ man shasum
+```
+
+```bash
+[jensva@LEGION-Y540-JENS][~]$ shasum -a 256 2021-05-07-raspios-buster-armhf-lite.zip.1
+```
+
+Output:
+
+```text
+c5dad159a2775c687e9281b1a0e586f7471690ae28f2f2282c90e7d59f64273c  2021-05-07-raspios-buster-armhf-lite.zip.1
+```
+
+The SHA-256 checksum is the same as the one on the website. (c5dad159a2775c687e9281b1a0e586f7471690ae28f2f2282c90e7d59f64273c)
 
 *What is the use of this hash?*
 
-### ❌ The printenv command
+This hash encrypts the data so it isn't readable. It prevents data being sent in plain-text.
+
+### ✅ The printenv command
 
 *Describe in your own words what the `printenv` command does.*
 
-### ❌ IP Address
+```bash
+[jensva@LEGION-Y540-JENS][~]$ man printenv
+```
+
+Info out of man page → It prints the environment variables. If no variable is given, it prints them all.
+
+### ✅ IP Address
 
 *Find the IP address of your WiFi interface. What command did you use?*
+
+```bash
+[jensva@LEGION-Y540-JENS][~]$ apropos wifi
+[jensva@LEGION-Y540-JENS][~]$ wifi-status
+```
+
+I found the IP-address 172.20.112.1 with the 'wifi-status' command. However, that's the IP address of the virtual Ethernet adapter for WSL. The IP address of the WiFi interface is 192.168.1.32.
 
 ### ❌ IP of Sivir Server
 
