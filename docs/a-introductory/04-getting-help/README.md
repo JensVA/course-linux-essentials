@@ -234,7 +234,7 @@ uid=1000(jensva) gid=1000(jensva) groups=1000(jensva),4(adm),20(dialout),24(cdro
 *Describe in your own words what the `tree` command does. How do you list all subdirectories too? How can you only include directories? If the `tree` command is not available on your system you can install it using `sudo apt install tree`*
 
 ```bash
-[jensva@LEGION-Y540-JENS][~]$ man tree
+[jensva@LEGION-Y540-JENS][/]$ man tree
 ```
 
 Info out of man page → It lists all the directories in the form of a tree. (Just like a family tree)
@@ -242,7 +242,7 @@ Info out of man page → It lists all the directories in the form of a tree. (Ju
 To list all the subdirectories:
 
 ```bash
-[jensva@LEGION-Y540-JENS][~]$ tree
+[jensva@LEGION-Y540-JENS][/]$ tree
 ```
 
 Output:
@@ -267,10 +267,10 @@ Output:
 To include only directories:
 
 ```bash
-[jensva@LEGION-Y540-JENS][~]$ tree -d
+[jensva@LEGION-Y540-JENS][/]$ tree -d
 ```
 
-Output (-a added for content):
+Output:
 
 ```text
 .
@@ -290,13 +290,13 @@ Output (-a added for content):
 *Describe in your own words what the `which` command does. What is the result for `pwd` ?*
 
 ```bash
-[jensva@LEGION-Y540-JENS][~]$ man which
+[jensva@LEGION-Y540-JENS][/]$ man which
 ```
 
 Info out of man page → It returns the links/pathnames of the given filename.
 
 ```bash
-[jensva@LEGION-Y540-JENS][~]$ which pwd
+[jensva@LEGION-Y540-JENS][/]$ which pwd
 ```
 
 Output:
@@ -310,13 +310,13 @@ Output:
 *Describe in your own words what the `file` command does. What is the result for `~/.bashrc` ?*
 
 ```bash
-[jensva@LEGION-Y540-JENS][~]$ man file
+[jensva@LEGION-Y540-JENS][/]$ man file
 ```
 
 Info out of man page → It returns the type of the file (text, executable, data...).
 
 ```bash
-[jensva@LEGION-Y540-JENS][~]$ ~/.bashrc
+[jensva@LEGION-Y540-JENS][/]$ ~/.bashrc
 ```
 
 Output:
@@ -330,13 +330,13 @@ Output:
 *Describe in your own words what the `type` command does. What is the result for `ls` and what is the result for `g++` ?*
 
 ```bash
-[jensva@LEGION-Y540-JENS][~]$ type --help
+[jensva@LEGION-Y540-JENS][/]$ type --help
 ```
 
 Info out of help page → The type command gives info about a command type.
 
 ```bash
-[jensva@LEGION-Y540-JENS][~]$ type ls
+[jensva@LEGION-Y540-JENS][/]$ type ls
 ```
 
 ```text
@@ -344,7 +344,7 @@ Output: ls is aliased to `ls --color=auto'
 ```
 
 ```bash
-[jensva@LEGION-Y540-JENS][~]$ type g++
+[jensva@LEGION-Y540-JENS][/]$ type g++
 ```
 
 ```text
@@ -356,13 +356,13 @@ Output: g++ is /usr/bin/g++
 *What command can be used to count lines and words in text? Give an example and explain the output.*
 
 ```bash
-[jensva@LEGION-Y540-JENS][~]$ apropos count
+[jensva@LEGION-Y540-JENS][/]$ apropos count
 ```
 
 Command (You should provide a filename):
 
 ```bash
-[jensva@LEGION-Y540-JENS][~]$ wc Flowchart.docx
+[jensva@LEGION-Y540-JENS][/]$ wc Flowchart.docx
 ```
 
 Output:
@@ -371,12 +371,38 @@ Output:
 47   276 14809 Flowchart.docx
 ```
 
-### ❌ The wget command
+### ✅ The wget command
 
 *How can you download a file from the Internet using the command line?. Find a file online to use it on and demonstrate its usage.*
 
+Let's download an old version of linux:
+
 ```bash
-[jensva@LEGION-Y540-JENS][~]$ man wget
+[jensva@LEGION-Y540-JENS][~]$ wget https://mirrors.edge.kernel.org/pub/linux/kernel/Historic/linux-0.01.tar.gz
+
+```
+
+To extract the tar.gz file:
+
+```bash
+[jensva@LEGION-Y540-JENS][~]]$ tar -xvf linux-0.01.tar.gz
+```
+
+To look inside some of the code:
+
+```bash
+[jensva@LEGION-Y540-JENS][~/linux/init]$ nano main.c
+```
+
+I found some text written by a somewhat frustrated programmer :)
+
+```text
+/*
+ * Yeah, yeah, it's ugly, but I cannot find how to do this correctly
+ * and this seems to work. I anybody has more info on the real-time
+ * clock I'd be interested. Most of this was trial and error, and some
+ * bios-listing reading. Urghh.
+ */
 ```
 
 ### ✅ The dmesg command
@@ -384,7 +410,7 @@ Output:
 *Describe in your own words what the `dmesg` command does. Give an example and a partial output.*
 
 ```bash
-[jensva@LEGION-Y540-JENS][~]$ man dmesg
+[jensva@LEGION-Y540-JENS][/]$ man dmesg
 ```
 
 Info out of man page → It prints messages related to operations from the kernal. The messages are stored in a ring buffer (new message comes in and pushes the oldest message away).
@@ -407,18 +433,18 @@ Output:
 *Go to the website of Raspberry Pi - [https://www.raspberrypi.org/software/operating-systems](https://www.raspberrypi.org/software/operating-systems) and download the Raspberry Pi OS image using the `wget` command line tool. Now check if the SHA-256 checksum complies with the one being advertised on the website.*
 
 ```bash
-[jensva@LEGION-Y540-JENS][~]$ wget https://downloads.raspberrypi.org/raspios_lite_armhf/images/raspios_lite_armhf-2021-05-28/2021-05-07-raspios-buster-armhf-lite.zip
+[jensva@LEGION-Y540-JENS][/]$ wget https://downloads.raspberrypi.org/raspios_lite_armhf/images/raspios_lite_armhf-2021-05-28/2021-05-07-raspios-buster-armhf-lite.zip
 ```
 
 *What tool did you use to calculate the checksum? Demonstrate its usage.*
 
 ```bash
-[jensva@LEGION-Y540-JENS][~]$ apropos checksum
-[jensva@LEGION-Y540-JENS][~]$ man shasum
+[jensva@LEGION-Y540-JENS][/]$ apropos checksum
+[jensva@LEGION-Y540-JENS][/]$ man shasum
 ```
 
 ```bash
-[jensva@LEGION-Y540-JENS][~]$ shasum -a 256 2021-05-07-raspios-buster-armhf-lite.zip.1
+[jensva@LEGION-Y540-JENS][/]$ shasum -a 256 2021-05-07-raspios-buster-armhf-lite.zip.1
 ```
 
 Output:
@@ -438,7 +464,7 @@ This hash encrypts the data so it isn't readable. It prevents data being sent in
 *Describe in your own words what the `printenv` command does.*
 
 ```bash
-[jensva@LEGION-Y540-JENS][~]$ man printenv
+[jensva@LEGION-Y540-JENS][/]$ man printenv
 ```
 
 Info out of man page → It prints the environment variables. If no variable is given, it prints them all.
@@ -448,12 +474,28 @@ Info out of man page → It prints the environment variables. If no variable is 
 *Find the IP address of your WiFi interface. What command did you use?*
 
 ```bash
-[jensva@LEGION-Y540-JENS][~]$ apropos wifi
-[jensva@LEGION-Y540-JENS][~]$ wifi-status
+[jensva@LEGION-Y540-JENS][/]$ ifconfig
 ```
 
-I found the IP-address 172.20.112.1 with the 'wifi-status' command. However, that's the IP address of the virtual Ethernet adapter for WSL. The IP address of the WiFi interface is 192.168.1.32.
+I found the IP-address 172.20.122.39
 
-### ❌ IP of Sivir Server
+### ✅ IP of Sivir Server
 
 *What is the IP address of the internal server `sivir.devbit.be`? Make sure you are connected to the `Devbit` network.*
+
+```bash
+[jensva@LEGION-Y540-JENS][/]$ nslookup sivir.devbit.be
+```
+
+Output:
+
+```text
+Server:         172.20.112.1
+Address:        172.20.112.1#53
+
+Non-authoritative answer:
+Name:   sivir.devbit.be
+Address: 172.16.10.5
+```
+
+Answer: 172.16.10.5

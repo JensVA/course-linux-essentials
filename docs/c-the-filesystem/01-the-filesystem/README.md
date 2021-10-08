@@ -638,6 +638,10 @@ Mark challenges using a ✅ once they are finished.
 
 *There is a file on the system that logs authentication changes and failures. Can you guess where it can be found? Provide the path to the file.*
 
+```text
+/var/log
+```
+
 ### ❌ Apt Source List
 
 *The apt tool uses a configuration file which specifies in which repositories it should look for packages. Its called the apt `sources.list` file. Can you guess where it can be found? Provide the path to the file.*

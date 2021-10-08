@@ -285,7 +285,7 @@ Mark challenges using a ✅ once they are finished.
 
 **Describe in your own words what the `whoami` command does.**
 
-It prints the current user name to the terminal.
+It prints the current username to the terminal.
 
 ### ✅ The uptime command
 
