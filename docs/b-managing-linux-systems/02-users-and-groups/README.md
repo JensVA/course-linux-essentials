@@ -377,6 +377,8 @@ Mark challenges using a ✅ once they are finished.
 
 *Try to login to the `daemon` system user account. Use `sudo su daemon`. What does it display as a message ? What application is outputting this message ? Run that application and prove it.*
 
+It displays "This account is currently not available.".
+
 ### ❌ Creating group with id
 
 *Create a group called `hackers` with the specific group id `1337`. Now create two users (students from the class) and add them both the group.*
@@ -385,7 +387,7 @@ Mark challenges using a ✅ once they are finished.
 
 *Some user entries are showing `/bin/false` as the shell command. Do some research and explain what the difference is with `/usr/sbin/nologin`.*
 
-### ❌ The auth.log file 
+### ❌ The auth.log file
 
 *What does the file `/log/var/auth.log` track? Provide an example of a command that shows entries being added to the log after you executed the command. Include the entry here that was added to the file.*
 

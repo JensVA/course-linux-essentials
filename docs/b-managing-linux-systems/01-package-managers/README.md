@@ -269,17 +269,80 @@ Find all the info you need in the man-pages. Document the commands you used for 
 
 Mark challenges using a ✅ once they are finished.
 
-### ❌ Cowsay
+### ✅ Cowsay
 
 *Download the `.deb` package for `cowsay` and install it using `dpkg`. You can find the package at [https://packages.debian.org/sid/all/cowsay/download](https://packages.debian.org/sid/all/cowsay/download).*
 
 *Run it once it's installed. What does it do ?*
+
+```bash
+[jensva@LEGION-Y540-JENS][~]$ wget http://ftp.nl.debian.org/debian/pool/main/c/cowsay/cowsay_3.03+dfsg2-8_all.deb
+```
+
+```bash
+[jensva@LEGION-Y540-JENS][~]$ sudo dpkg --install cowsay_3.03+dfsg2-8_all.deb
+```
+
+```bash
+[jensva@LEGION-Y540-JENS][~]$ man cowsay
+```
+
+Cowsay generates animals in the console who say something provided by the user.
+
+```bash
+[jensva@LEGION-Y540-JENS][~]$ cowsay -f dragon-and-cow "Hi"
+```
+
+Output:
+
+```text
+ ____
+< Hi >
+ ----
+                       \                    ^    /^
+                        \                  / \  // \
+                         \   |\___/|      /   \//  .\
+                          \  /O  O  \__  /    //  | \ \           *----*
+                            /     /  \/_/    //   |  \  \          \   |
+                            @___@`    \/_   //    |   \   \         \/\ \
+                           0/0/|       \/_ //     |    \    \         \  \
+                       0/0/0/0/|        \///      |     \     \       |  |
+                    0/0/0/0/0/_|_ /   (  //       |      \     _\     |  /
+                 0/0/0/0/0/0/`/,_ _ _/  ) ; -.    |    _ _\.-~       /   /
+                             ,-}        _      *-.|.-~-.           .~    ~
+            \     \__/        `/\      /                 ~-. _ .-~      /
+             \____(oo)           *.   }            {                   /
+             (    (--)          .----~-.\        \-`                 .~
+             //__\\  \__ Ack!   ///.----..<        \             _ -~
+            //    \\               ///-._ _ _ _ _ _ _{^ - - - - ~
+```
 
 ### ❌ Nmap
 
 *Install the `nmap` package using `apt`.*
 
 *Port scan the server `sivir.devbit.be`. Make sure you are connected to the `Devbit` network. What services are running on this machine?*
+
+```bash
+[jensva@LEGION-Y540-JENS][~]$ sudo apt install nmap
+```
+
+```bash
+[jensva@LEGION-Y540-JENS][~]$ nmap sivir.devbit.be
+```
+
+Output:
+
+```text
+Starting Nmap 7.80 ( https://nmap.org ) at 2021-10-14 12:35 CEST
+Nmap scan report for sivir.devbit.be (172.16.10.5)
+Host is up (0.0071s latency).
+Not shown: 999 closed ports
+PORT   STATE SERVICE
+22/tcp open  ssh
+
+Nmap done: 1 IP address (1 host up) scanned in 2.30 seconds
+```
 
 ### ❌ NodeJS
 
@@ -291,10 +354,23 @@ Mark challenges using a ✅ once they are finished.
 console.log("Hello World from JavaScript");
 ```
 
+```bash
+[jensva@LEGION-Y540-JENS][~]$ sudo apt install snap
+```
+
 ### ❌ Dhcpdump
 
 *Install the `dhcpdump` and try to capture some DHCP traffic in the network. Work together with another student and try to capture the DHCP request of his/her laptop. Find out what the MAC Address is and check it using the `ip` or `ipconfig` tool.*
 
+```bash
+[jensva@LEGION-Y540-JENS][~]$ sudo apt install dhcpdump
+```
+
 ### ❌ MQTT
 
 *Find a command line tool that allows you to publish messages to an MQTT broker. Use it to send your name to the topic `linux/students`. Use the broker `mqtt.devbit.be`.*
+
+```bash
+[jensva@LEGION-Y540-JENS][~]$ sudo apt install mosquitto
+[jensva@LEGION-Y540-JENS][~]$ sudo apt install mosquitto-clients
+```
