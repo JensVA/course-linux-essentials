@@ -317,7 +317,7 @@ Output:
             //    \\               ///-._ _ _ _ _ _ _{^ - - - - ~
 ```
 
-### ❌ Nmap
+### ✅ Nmap
 
 *Install the `nmap` package using `apt`.*
 
@@ -344,6 +344,8 @@ PORT   STATE SERVICE
 Nmap done: 1 IP address (1 host up) scanned in 2.30 seconds
 ```
 
+The SSH service is running on this machine.
+
 ### ❌ NodeJS
 
 *Install `snap` using `apt`. Next use `snap` to install `nodejs`.*
@@ -366,11 +368,42 @@ console.log("Hello World from JavaScript");
 [jensva@LEGION-Y540-JENS][~]$ sudo apt install dhcpdump
 ```
 
-### ❌ MQTT
+```bash
+[jensva@LEGION-Y540-JENS][~]$ dhcpdump -i eth0
+```
+
+Output:
+
+```text
+You don't have permission to capture on that device (socket: Operation not permitted)
+```
+
+### ✅ MQTT
 
 *Find a command line tool that allows you to publish messages to an MQTT broker. Use it to send your name to the topic `linux/students`. Use the broker `mqtt.devbit.be`.*
+
+Found command line tool: Mosquitto MQTT Broker
 
 ```bash
 [jensva@LEGION-Y540-JENS][~]$ sudo apt install mosquitto
 [jensva@LEGION-Y540-JENS][~]$ sudo apt install mosquitto-clients
+```
+
+```bash
+[jensva@LEGION-Y540-JENS][~]$ nmap mqtt.devbit.be
+```
+
+Used nmap to find the ip-address: 141.105.126.62
+
+```bash
+[jensva@LEGION-Y540-JENS][~]$ mosquitto_pub -h 141.105.126.62 -m "JensVA" -t linux/students -d
+```
+
+Output:
+
+```text
+Client mosq-gvKjEfWge1S9UlARyB sending CONNECT
+Client mosq-gvKjEfWge1S9UlARyB received CONNACK (0)
+Client mosq-gvKjEfWge1S9UlARyB sending PUBLISH (d0, q0, r0, m1, 'linux/students', ... (6 bytes))
+Client mosq-gvKjEfWge1S9UlARyB sending DISCONNECT
 ```

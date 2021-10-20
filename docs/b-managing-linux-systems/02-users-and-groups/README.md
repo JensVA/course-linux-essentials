@@ -379,28 +379,83 @@ Mark challenges using a ✅ once they are finished.
 
 It displays "This account is currently not available.".
 
-### ❌ Creating group with id
+### ✅ Creating group with id
 
 *Create a group called `hackers` with the specific group id `1337`. Now create two users (students from the class) and add them both the group.*
 
-### ❌ Difference false and nologin
+```bash
+[jensva@LEGION-Y540-JENS][~]$ sudo addgroup --gid 1337 hackers
+[jensva@LEGION-Y540-JENS][~]$ sudo adduser bart
+[jensva@LEGION-Y540-JENS][~]$ sudo adduser sirine
+[jensva@LEGION-Y540-JENS][~]$ sudo adduser bart hackers
+[jensva@LEGION-Y540-JENS][~]$ sudo adduser sirine hackers
+[jensva@LEGION-Y540-JENS][~]$ cat /etc/group
+```
+
+Output:
+
+```text
+hackers:x:1337:bart,sirine
+```
+
+### ✅ Difference false and nologin
 
 *Some user entries are showing `/bin/false` as the shell command. Do some research and explain what the difference is with `/usr/sbin/nologin`.*
+
+Both shell commands deny the access to the user account, but with a difference:
+
+* `/bin/false` only exits with a status code (no message) when a user attempts to login.
+
+* `/usr/sbin/nologin` Returns a message to tell that the account is not available.
 
 ### ❌ The auth.log file
 
 *What does the file `/log/var/auth.log` track? Provide an example of a command that shows entries being added to the log after you executed the command. Include the entry here that was added to the file.*
 
-### ❌ Locking out Steve
+### ✅ Locking out Steve
 
 *Create a new user steve and set a password for the user. Login to the `steve` account using `su` to make sure it works.*
 
+```bash
+[jensva@LEGION-Y540-JENS][~]$ sudo useradd steve
+[jensva@LEGION-Y540-JENS][~]$ sudo passwd steve
+[jensva@LEGION-Y540-JENS][~]$ su steve
+```
+
 *Now lock the user account and make sure there is no way anyone can login as `steve`, not even `root`*
+
+```bash
+[jensva@LEGION-Y540-JENS][~]$ sudo passwd -l steve
+[jensva@LEGION-Y540-JENS][~]$ sudo usermod --expiredate 1 steve
+[jensva@LEGION-Y540-JENS][~]$ su steve
+```
+
+Output:
+
+```text
+Authentication failure
+```
 
 ### ❌ Zsh Shell
 
 *Install the zsh shell on your system. Now change your own shell to `zsh`. Make sure to do this in such a way that a new session will also use `zsh`.*
 
-### ❌ Semester Account
+```bash
+[jensva@LEGION-Y540-JENS][~]$ sudo apt-get install zsh
+[jensva@LEGION-Y540-JENS][~]$ zsh
+```
+
+Command to use the zsh shell in a new session:
+
+```bash
+[jensva@LEGION-Y540-JENS][~]$ chsh -s $(which zsh)
+```
+
+### ✅ Semester Account
 
 *Create a new account for an exchange student called `maggie`. Make sure the account can only be used until 31st of January of the next year. Basically only for this semester*.
+
+```bash
+[jensva@LEGION-Y540-JENS][~]$ sudo useradd maggie
+[jensva@LEGION-Y540-JENS][~]$ sudo usermod --expiredate 2021-01-31 maggie
+```
