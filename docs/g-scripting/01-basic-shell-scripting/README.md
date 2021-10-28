@@ -604,11 +604,40 @@ Solve the challenges by creating small bash scripts. Place the bash scripts here
 
 Mark challenges using a ✅ once they are finished.
 
-### ❌ Log the Date
+### ✅ Log the Date
 
 *Create a script that output the date every 10 seconds. Use the `sleep` command to wait between calls to the `date` command.*
 
-### ❌ Available Memory
+```bash
+[jensva@LEGION-Y540-JENS][~]$ touch date
+[jensva@LEGION-Y540-JENS][~]$ chmod +x ./date
+[jensva@LEGION-Y540-JENS][~]$ code date
+```
+
+Script:
+
+```shell
+while true
+do
+  now=$(date)
+  echo "${now}"
+  sleep 10
+done
+```
+
+```bash
+[jensva@LEGION-Y540-JENS][~]$ ./date
+```
+
+Output:
+
+```text
+Thu Oct 28 13:08:01 CEST 2021
+Thu Oct 28 13:08:11 CEST 2021
+Thu Oct 28 13:08:21 CEST 2021
+```
+
+### ✅ Available Memory
 
 *Output the available system memory together with the current date in the following format:*
 
@@ -617,6 +646,30 @@ Mark challenges using a ✅ once they are finished.
 ```
 
 *The available memory can be found in the file `/proc/meminfo`. Use the `grep` tool to filter out the line with MemAvailable.*
+
+```bash
+[jensva@LEGION-Y540-JENS][~]$ touch memory
+[jensva@LEGION-Y540-JENS][~]$ chmod +x ./memory
+[jensva@LEGION-Y540-JENS][~]$ code memory
+```
+
+Script:
+
+```shell
+now=$(date)
+output=$(grep 'MemAvailable' /proc/meminfo)
+echo "[${now}] ${output}"
+```
+
+```bash
+[jensva@LEGION-Y540-JENS][~]$ ./memory
+```
+
+Output:
+
+```text
+[Thu Oct 28 13:21:53 CEST 2021] MemAvailable:   12740356 kB
+```
 
 ### ❌ Fetching Github Keys
 
