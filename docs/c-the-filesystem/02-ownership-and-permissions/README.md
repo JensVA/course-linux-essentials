@@ -382,3 +382,23 @@ Mark challenges using a ✅ once they are finished.
 ### ❌ Etcetera
 
 *Who is the owner of the `/etc` directory on the system? What are the permissions on this directory? Why can you list the content of this directory?*
+
+```bash
+jens@waterbeer:/ $ ls -al
+```
+
+Output:
+
+```text
+drwxr-xr-x 118 root root  4096 Nov  4 17:06 etc
+```
+
+Permissions of the directory:
+
+* The `owner` of the file (root) can read, write and execute the folder. (rwx)
+
+* The members of the `group` of the file belongs to can read and execute the folder. (r-x)
+
+* `Other` members can also read and execute the folder. (r-x)
+
+Others can read the content of the folder (r), that's why you're allowed to list the content of the folder.

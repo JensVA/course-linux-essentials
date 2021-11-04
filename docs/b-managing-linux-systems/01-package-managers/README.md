@@ -346,9 +346,17 @@ Nmap done: 1 IP address (1 host up) scanned in 2.30 seconds
 
 The SSH service is running on this machine.
 
-### ❌ NodeJS
+### ✅ NodeJS
 
 *Install `snap` using `apt`. Next use `snap` to install `nodejs`.*
+
+```bash
+[jensva@LEGION-Y540-JENS][~]$ sudo apt install snap
+```
+
+```bash
+[jensva@LEGION-Y540-JENS][~]$ sudo snap install node --classic --channel=8
+```
 
 *Now launch node and tryout the following little code snippet:*
 
@@ -357,10 +365,16 @@ console.log("Hello World from JavaScript");
 ```
 
 ```bash
-[jensva@LEGION-Y540-JENS][~]$ sudo apt install snap
+[jensva@LEGION-Y540-JENS][~]$ node
 ```
 
-### ❌ Dhcpdump
+```text
+Welcome to Node.js v14.18.1.
+> console.log("Hello World from Javascript")
+Hello World from Javascript
+```
+
+### ✅ Dhcpdump
 
 *Install the `dhcpdump` and try to capture some DHCP traffic in the network. Work together with another student and try to capture the DHCP request of his/her laptop. Find out what the MAC Address is and check it using the `ip` or `ipconfig` tool.*
 
@@ -368,15 +382,56 @@ console.log("Hello World from JavaScript");
 [jensva@LEGION-Y540-JENS][~]$ sudo apt install dhcpdump
 ```
 
+I have a static eth0 ip for the campus, that's why I used the wlan0 for capturing the home network dhcp traffic.
+
 ```bash
-[jensva@LEGION-Y540-JENS][~]$ dhcpdump -i eth0
+[jensva@LEGION-Y540-JENS][~]$ dhcpdump -i wlan0
 ```
+
+Now I enabled wifi on my phone and got this result:
 
 Output:
 
 ```text
-You don't have permission to capture on that device (socket: Operation not permitted)
+  TIME: 2021-11-04 14:14:44.029
+    IP: 0.0.0.0 (8e:f2:9d:9c:c2:12) > 255.255.255.255 (ff:ff:ff:ff:ff:ff)
+    OP: 1 (BOOTPREQUEST)
+ HTYPE: 1 (Ethernet)
+  HLEN: 6
+  HOPS: 0
+   XID: 07298656
+  SECS: 0
+ FLAGS: 0
+CIADDR: 0.0.0.0
+YIADDR: 0.0.0.0
+SIADDR: 0.0.0.0
+GIADDR: 0.0.0.0
+CHADDR: 8e:f2:9d:9c:c2:12:00:00:00:00:00:00:00:00:00:00
+ SNAME: .
+ FNAME: .
+OPTION:  53 (  1) DHCP message type         3 (DHCPREQUEST)
+OPTION:  61 (  7) Client-identifier         01:8e:f2:9d:9c:c2:12
+OPTION:  50 (  4) Request IP address        192.168.1.47
+OPTION:  57 (  2) Maximum DHCP message size 1500
+OPTION:  60 ( 15) Vendor class identifier   android-dhcp-11
+OPTION:  12 ( 12) Host name                 OnePlus-Nord
+OPTION:  55 ( 12) Parameter Request List      1 (Subnet mask)
+                                              3 (Routers)
+                                              6 (DNS server)
+                                             15 (Domainname)
+                                             26 (Interface MTU)
+                                             28 (Broadcast address)
+                                             51 (IP address leasetime)
+                                             58 (T1)
+                                             59 (T2)
+                                             43 (Vendor specific info)
+                                            114 (URL)
+                                            108 (Swap Path)
 ```
+
+Mac address of my phone: 8e:f2:9d:9c:c2:12
+
+Checking the MAC-address on my phone confirms this.
 
 ### ✅ MQTT
 

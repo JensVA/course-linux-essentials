@@ -671,7 +671,7 @@ Output:
 [Thu Oct 28 13:21:53 CEST 2021] MemAvailable:   12740356 kB
 ```
 
-### ❌ Fetching Github Keys
+### ✅ Fetching Github Keys
 
 *Create a script that fetches the public SSH keys of a user on GitHub and displays them in the terminal. This can be accomplished by using the curl tool to access the endpoint `https://github.com/<username>.keys`, where `<username>` is an existing github username.*
 
@@ -692,10 +692,59 @@ Fetching Keys
 ...
 ```
 
+```bash
+[jensva@LEGION-Y540-JENS][~]$ touch keys
+[jensva@LEGION-Y540-JENS][~]$ chmod +x ./keys
+[jensva@LEGION-Y540-JENS][~]$ code keys
+```
+
+Script:
+
+```shell
+if [ -z "$1" ]; then
+  echo -n "Please enter GitHub username: "
+  read gitname
+  curl "https://github.com/$gitname.keys"
+else
+  curl "https://github.com/$1.keys"
+fi
+```
+
+```bash
+[jensva@LEGION-Y540-JENS][~]$ ./keys JensVA
+```
+
 ### ❌ DHCP Traffic
 
 *Create a script that filters DHCP network traffic and outputs matching MAC-Addresses, IP-Addresses and Hostnames.*
 
-### ❌ Backups
+```bash
+[jensva@LEGION-Y540-JENS][~]$ touch dhcp
+[jensva@LEGION-Y540-JENS][~]$ chmod +x ./dhcp
+[jensva@LEGION-Y540-JENS][~]$ code dhcp
+```
+
+I don't really understand to what they need to match.
+
+Script:
+
+```shell
+
+```
+
+### ✅ Backups
 
 *Choose a directory on your system (best to choose one in your home-dir). Create a script that archives this directory in a `.tar.gz` tarball file. Add a timestamp in the name of the output file.*
+
+```bash
+[jensva@LEGION-Y540-JENS][~]$ touch backup
+[jensva@LEGION-Y540-JENS][~]$ chmod +x ./backup
+[jensva@LEGION-Y540-JENS][~]$ code backup
+```
+
+Script:
+
+```shell
+current_time=$(date "+%Y.%m.%d-%H.%M.%S")
+tar -zcf "backup_projects$current_time.tar.gz" /home/jensva/projects
+```

@@ -634,44 +634,150 @@ Try to solve the challenges without using google. Better to use the man-pages to
 
 Mark challenges using a ✅ once they are finished.
 
-### ❌ Authentication Log
+### ✅ Authentication Log
 
 *There is a file on the system that logs authentication changes and failures. Can you guess where it can be found? Provide the path to the file.*
 
 ```text
-/var/log
+/var/log/auth.log
 ```
 
-### ❌ Apt Source List
+### ✅ Apt Source List
 
 *The apt tool uses a configuration file which specifies in which repositories it should look for packages. Its called the apt `sources.list` file. Can you guess where it can be found? Provide the path to the file.*
 
-### ❌ Tmp Filesystem
+```text
+/etc/apt/sources.list
+```
+
+### ✅ Tmp Filesystem
 
 *Create a file called `hello` in `/tmp`. Restart your linux distro using `reboot`. Where is the file? What happened?*
 
-### ❌ Timestamps
+```bash
+jens@waterbeer:/tmp $ touch hello
+jens@waterbeer:/tmp $ reboot
+```
+
+The hello file is gone. This is because the /tmp is cleared at every reboot.
+
+### ✅ Timestamps
 
 *Create a file called `first-of-many` in your home directory. Use `nano` to add some content to the file. Now list the details of the file such as the size and when it was last modified.*
 
-### ❌ No space for spaces
+```bash
+jens@waterbeer:/tmp $ touch first-of-many
+jens@waterbeer:/tmp $ nano touch first-of-many
+jens@waterbeer:/tmp $ ls -l
+```
+
+```text
+-rw-r--r-- 1 jens jens   25 Nov  4 17:09 first-of-many
+```
+
+### ✅ No space for spaces
 
 *Try to create a file called `second try` (with the space included) using the command `touch second try` in your home directory. What happened? Why did this happen? How can you actually achieve creating a file with a space in its name?*
 
-### ❌ The root
+```bash
+jens@waterbeer:/tmp $ touch second try
+jens@waterbeer:/tmp $ ls -l
+```
+
+```text
+-rw-r--r-- 1 jens jens    0 Nov  4 17:12 second
+-rw-r--r-- 1 jens jens    0 Nov  4 17:12 try
+```
+
+It created 2 seperate files. You can create a file containing a space in its name by adding a backslash like this:
+
+```bash
+jens@waterbeer:/tmp $ touch second\ try
+```
+
+```text
+-rw-r--r-- 1 jens jens    0 Nov  4 17:21 'second try'
+```
+
+### ✅ The root
 
 *Try to create a directory `/backups` (under the root of the filesystem). Why is it failing?*
 
+It is failing because you don't have the permission to write under the root. You need to have admin rights to do so.
+
 *Now use `sudo` to create the directory. Try creating a file called `README.md` within this `/backups` directory. Can you do it? Why / Why not?*
 
-### ❌ Bash RC
+```bash
+jens@waterbeer:/ $ mkdir backups
+jens@waterbeer:/ $ cd backups
+jens@waterbeer:/backups $ touch README.md
+```
+
+You still can't create a file in that directory without using sudo. The owner of the directory is still root, that's why you can't create a file in there.
+
+### ✅ Bash RC
 
 *In your home directory you will find a file called `.bashrc`. Create a backup of that file called `.bashrc.bak`.*
 
-### ❌ Sym Linking
+```bash
+jens@waterbeer:~ $ cp .bashrc .bashrc.bak
+jens@waterbeer:~ $ ls -al
+```
+
+```text
+-rw-r--r--  1 jens jens 3523 Oct 21 12:17  .bashrc
+-rw-r--r--  1 jens jens 3523 Nov  4 17:43  .bashrc.bak
+```
+
+### ✅ Sym Linking
 
 *What does the tool `ln` allow you to do? Use it to create such a link in your home directory called `secrets` to the file `/etc/passwd`. Now use the `cat` tool to open the file `secrets`. What do you see? What happened?*
 
-### ❌ SD Card
+It makes links between files.
+
+```bash
+jens@waterbeer:~ $ ln -Ts /etc/passwd secrets
+jens@waterbeer:~ $ cat secrets
+```
+
+(the s means soft link, because we aren't allowed to create a hard link)
+
+Output:
+
+```text
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+```
+
+The secrets file is now a link to the /etc/passwd file. We can confirm this with the 'ls -al' command. The first letter is an l, which means link. Output:
+
+```text
+lrwxrwxrwx  1 jens jens   11 Nov  4 17:53  secrets -> /etc/passwd
+```
+
+### ✅ SD Card
 
 *Plugin an SD Card or a USB stick into you computer. Where can we find the actual block device? Where is the filesystem mounted? What is the difference between these two?*
+
+We can see where the filesystem is mounted with following command:
+
+```bash
+jens@waterbeer:~ $ lsblk
+```
+
+Output:
+
+```text
+NAME        MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+loop0         7:0    0 84.5M  1 loop /snap/core/11997
+loop1         7:1    0 14.8M  1 loop /snap/node/2317
+sda           8:0    1 28.7G  0 disk
+└─sda1        8:1    1 28.7G  0 part /media/jens/JENSVANHOVE
+mmcblk0     179:0    0 29.6G  0 disk
+├─mmcblk0p1 179:1    0  256M  0 part /boot
+└─mmcblk0p2 179:2    0 29.3G  0 part /
+```
+
+The filesystem is mounted in /media/jens/JENSVANHOVE.

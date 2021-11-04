@@ -408,9 +408,27 @@ Both shell commands deny the access to the user account, but with a difference:
 
 * `/usr/sbin/nologin` Returns a message to tell that the account is not available.
 
-### ❌ The auth.log file
+### ✅ The auth.log file
 
 *What does the file `/log/var/auth.log` track? Provide an example of a command that shows entries being added to the log after you executed the command. Include the entry here that was added to the file.*
+
+It stores information about login attempts. Lets login into the root account to switch back to my account. We'll see what's changed in the file.
+
+```bash
+jens@waterbeer:~ $ sudo su
+root@waterbeer:~ $ su jens
+jens@waterbeer:~ $ cd /var/log
+jens@waterbeer:/var/log $ nano auth.log
+```
+
+4 lines with login attempt information have been added to the file.
+
+```text
+Nov  4 15:47:54 waterbeer su: (to root) jens on pts/0
+Nov  4 15:47:54 waterbeer su: pam_unix(su:session): session opened for user root by jens(uid=0)
+Nov  4 15:48:11 waterbeer su: (to jens) jens on pts/0
+Nov  4 15:48:11 waterbeer su: pam_unix(su:session): session opened for user jens by jens(uid=0)
+```
 
 ### ✅ Locking out Steve
 
@@ -436,7 +454,7 @@ Output:
 Authentication failure
 ```
 
-### ❌ Zsh Shell
+### ✅ Zsh Shell
 
 *Install the zsh shell on your system. Now change your own shell to `zsh`. Make sure to do this in such a way that a new session will also use `zsh`.*
 
@@ -457,5 +475,5 @@ Command to use the zsh shell in a new session:
 
 ```bash
 [jensva@LEGION-Y540-JENS][~]$ sudo useradd maggie
-[jensva@LEGION-Y540-JENS][~]$ sudo usermod --expiredate 2021-01-31 maggie
+[jensva@LEGION-Y540-JENS][~]$ sudo usermod --expiredate 2022-01-31 maggie
 ```
