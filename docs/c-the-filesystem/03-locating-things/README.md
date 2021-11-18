@@ -258,7 +258,7 @@ Try to solve the challenges without using google. Better to use the man-pages to
 
 Mark challenges using a ✅ once they are finished.
 
-### ❌ Locate
+### ✅ Locate
 
 *Install the `locate` command and update the index database.*
 
@@ -268,15 +268,48 @@ Mark challenges using a ✅ once they are finished.
 * the configuration file `ssh_config`
 * `auth.log`
 
-### ❌ Python man-pages
+I installed locate on the Raspberry Pi, the tool didn't work on Ubuntu.
+
+```bash
+jens@waterbeer:~ $ locate sudoers.dist
+```
+
+```text
+/usr/share/doc/sudo/examples/sudoers.dist
+```
+
+```bash
+jens@waterbeer:~ $ locate ssh_config
+```
+
+```text
+/etc/ssh/ssh_config
+/snap/core/11997/etc/ssh/ssh_config
+/usr/share/man/man5/ssh_config.5.gz
+```
+
+```bash
+jens@waterbeer:~ $ locate auth.log
+```
+
+```text
+/var/log/auth.log
+/var/log/auth.log.1
+/var/log/auth.log.2.gz
+/var/log/auth.log.3.gz
+```
+
+### ✅ Python man-pages
 
 *Use the `whereis` tool to determine the location of the man-pages of `python`.*
 
-### ❌ Python man-pages
+```bash
+[jensva@LEGION-Y540-JENS][~]$ whereis man
+```
 
-*Use the `whereis` tool to determine the location of the `find` binary.*
+Looking in the man page of man, they are stored in `/usr/share/man`
 
-### ❌ Which
+### ✅ Which
 
 *What is the location of the following commands for the current user:*
 
@@ -284,32 +317,151 @@ Mark challenges using a ✅ once they are finished.
 * `locate`
 * `fdisk`
 
+```bash
+[jensva@LEGION-Y540-JENS][~]$ which passwd
+```
+
+```text
+/usr/bin/passwd
+```
+
+```bash
+[jensva@LEGION-Y540-JENS][~]$ which locate
+```
+
+```text
+/usr/bin/locate
+```
+
+```bash
+[jensva@LEGION-Y540-JENS][~]$ which fdisk
+```
+
+```text
+/usr/sbin/fdisk
+```
+
 *Why are the location of `passwd` and `fdisk` different? What is `fdisk` used for?*
+
+/bin is used for binaries neccesary on start-up. /sbin is the same, but for binaries with sudo rights. fdisk manages disk partition tables, and that needs sudo rights.
 
 ### Use find for the following challenges
 
 Make sure to redirect the `permission denied` errors to `/dev/null` for all searches unless specified otherwise.
 
-#### ❌ kernel.log
+#### ✅ kernel.log
 
 *Find the file `kernel.log`.*
 
-#### ❌ .bashrc
+```bash
+[jensva@LEGION-Y540-JENS][~]$ find / -type f -name "kernel.log" 2>/dev/null
+```
+
+No files were found, there is no "kernel.log" on WSL.
+
+#### ✅ .bashrc
 
 *Find the files `.bashrc`.*
 
-#### ❌ System Configuration Files
+```bash
+[jensva@LEGION-Y540-JENS][~]$ find / -type f -mount -name "*.bashrc" 2>/dev/null
+```
+
+I searched the internet and found the the -mount option makes sure that find doesn't look for files on other filesystems (Windows).
+
+Output:
+
+```text
+/home/waterbeer/.bashrc
+/home/barry/.bashrc
+/home/jensva/.bashrc
+/etc/bash.bashrc
+/etc/skel/.bashrc
+/usr/share/base-files/dot.bashrc
+/usr/share/doc/adduser/examples/adduser.local.conf.examples/bash.bashrc
+/usr/share/doc/adduser/examples/adduser.local.conf.examples/skel/dot.bashrc
+```
+
+#### ✅ System Configuration Files
 
 *Search for files that end with the extension `.conf` and contain a filename with the keyword `system` in the `/etc` directory.*
 
-#### ❌ User Readable Files
+```bash
+[jensva@LEGION-Y540-JENS][~]$ find /etc -type f -name "*system*.conf" 2>/dev/null
+```
+
+Output:
+
+```text
+/etc/systemd/system.conf
+```
+
+#### ✅ User Readable Files
 
 *What option can we use on `find` to make sure the current user can read the file? Don't use the `-perm` option. There is a better option. Give a nice example.*
 
-#### ❌ Altered Log Files
+We can use the option -readable to list files that are readable.
+
+For example, we want to search all the log files in the /var/log folder (next Challenge):
+
+```bash
+[jensva@LEGION-Y540-JENS][~]$ find /var/log -type f -name "*.log" 2>/dev/null -exec ls -lh {} \;
+```
+
+Output:
+
+```text
+-rw------- 1 root root 0 Nov 12 15:00 /var/log/ubuntu-advantage-license-check.log
+-rw-r----- 1 root adm 219K Nov 15 16:51 /var/log/apt/term.log
+-rw-r--r-- 1 root root 43K Nov 15 16:51 /var/log/apt/history.log
+-rw-r--r-- 1 root root 446K Nov 18 18:48 /var/log/dpkg.log
+-rw-r--r-- 1 root root 16K Nov 12 15:00 /var/log/alternatives.log
+-rw-r--r-- 1 root root 0 Nov 10 14:43 /var/log/landscape/sysinfo.log
+-rw------- 1 root root 0 Nov 12 15:00 /var/log/ubuntu-advantage-timer.log
+-rw------- 1 root root 0 Nov 12 15:00 /var/log/ubuntu-advantage.log
+```
+
+Output using the extra -readable option:
+
+```text
+-rw-r----- 1 root adm 219K Nov 15 16:51 /var/log/apt/term.log
+-rw-r--r-- 1 root root 43K Nov 15 16:51 /var/log/apt/history.log
+-rw-r--r-- 1 root root 446K Nov 18 18:48 /var/log/dpkg.log
+-rw-r--r-- 1 root root 16K Nov 12 15:00 /var/log/alternatives.log
+-rw-r--r-- 1 root root 0 Nov 10 14:43 /var/log/landscape/sysinfo.log
+```
+
+We can see that the command (with -readable) only displays the readable log files for the current user. The first file group is adm, and my user (jensva) belongs to this group. The 4 other files are readable by all the users.
+
+#### ✅ Altered Log Files
 
 *Find all log files in `/var/log` that were modified in the last 24 hours. Make sure to only include files and not directories. Now extend the command to perform a long listing human readable `ls` for each file.*
 
-#### ❌ Steal All Logs
+```bash
+[jensva@LEGION-Y540-JENS][~]$ find /var/log -type f -mtime -1 -name "*.log" 2>/dev/null -exec ls -lh {} \;
+```
+
+Output (after using dpkg to modify the log file):
+
+```text
+-rw-r--r-- 1 root root 446K Nov 18 18:48 /var/log/dpkg.log
+```
+
+#### ✅ Steal All Logs
 
 *Create a directory `logs` in `/tmp` and copy all `*.log` files you can find on the system to that location.*
+
+```bash
+[jensva@LEGION-Y540-JENS][~]$ mkdir /tmp/logs
+[jensva@LEGION-Y540-JENS][~]$ find / -type f -mount -name "*.log" 2>/dev/null -exec cp '{}' /tmp/logs \;
+```
+
+```bash
+[jensva@LEGION-Y540-JENS][/tmp/logs]$ ls
+```
+
+Output:
+
+```text
+alternatives.log  dpkg.log  errors.log  history.log  sysinfo.log  term.log
+```
