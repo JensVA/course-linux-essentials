@@ -465,3 +465,24 @@ Output:
 ```text
 alternatives.log  dpkg.log  errors.log  history.log  sysinfo.log  term.log
 ```
+
+#### ✅ Markdown README files
+
+*Find all `README.md` files on your system. Can you make it so the case of the filename does not matter? In other words, you should also be able to find `readme.md`, `Readme.md`, `readme.MD`, ...*
+
+We can use the option -iname instead of -name
+
+```bash
+[jensva@LEGION-Y540-JENS][~]$ find / -type f -mount -iname "readme.md" 2>/dev/null
+```
+
+Output:
+
+```text
+/home/jensva/Downloads/curlpp-0.8.1/Readme.md
+/home/jensva/dotfiles/dotbot/README.md
+/home/jensva/dotfiles/dotbot/test/README.md
+/home/jensva/dotfiles/README.md
+/home/jensva/.oh-my-zsh/README.md
+...
+```
