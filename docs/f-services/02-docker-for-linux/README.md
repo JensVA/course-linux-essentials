@@ -253,18 +253,41 @@ Try to solve the challenges without using google. Better to use the man-pages to
 
 Mark challenges using a ✅ once they are finished.
 
-### ❌ Docker on the Pi
+### ✅ Docker on the Pi
 
 *Install docker and your raspberry pi and make sure the hello-world runs*.
 
+To install and enable docker:
+
+```bash
+jens@waterbeer:~ $ curl -sSL https://get.docker.com | sh
+jens@waterbeer:~ $ sudo adduser jens docker
+jens@waterbeer:~ $ sudo systemctl enable docker
+jens@waterbeer:~ $ sudo systemctl start docker
+```
+
+To run hello-world and checking if it runs:
+
+```bash
+jens@waterbeer:~ $ docker run hello-world
+jens@waterbeer:~ $ docker ps
+```
+
 ### ❌ Hello API from RPi
- 
+
 *Setup the hello-node-api on the Raspberry Pi as a docker container. Make sure it runs on port 8000.*
 
 *You can find the repository at [https://github.com/BioBoost/linux-essentials-docker-hello-node-api](https://github.com/BioBoost/linux-essentials-docker-hello-node-api)*.
 
-### ❌ Node-RED on RPi
+### ✅ Node-RED on RPi
 
 *Setup a node-red service on your Raspberry Pi using docker. At what port is it available?*
 
 *Use the image [https://hub.docker.com/r/nodered/node-red](https://hub.docker.com/r/nodered/node-red)*.
+
+```bash
+jens@waterbeer:~ $ docker run --publish 4000:1880 --detach nodered/node-red
+```
+
+`--publish 4000:1880` betekent dat poort 1880 gemapped is op de systeempoort 4000 waardoor de node-red service ook buiten de docker-container kan benaderd worden.
+`--detach` betekent dat de service op de achtergrond kan draaien.
