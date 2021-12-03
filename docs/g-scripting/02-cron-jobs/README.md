@@ -150,6 +150,12 @@ Crontab entry:
 
 *Create a cron-job that will publish your raspberry pi's IP address to the `mqtt.devbit.be` broker on the topic `linux/ip/<yourname>` every minute. You can use the `mosquitto_pub` command for this.*
 
-### ❌ Backup Home
+### ✅ Backup Home
 
 *Create a cron-job that will backup your user directory to a `tar.gz` archive file every day at a specific time. Choose the time yourself.*
+
+Crontab entry:
+
+```bash
+0 * * * * tar -zcf "/home/jensva/backups/backup_user_dir.tar.gz" /home/jensva
+```
