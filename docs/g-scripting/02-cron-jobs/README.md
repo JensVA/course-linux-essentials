@@ -136,9 +136,15 @@ Try to solve the challenges without using google. Better to use the man-pages to
 
 Mark challenges using a ✅ once they are finished.
 
-### ❌ I am Alive
+### ✅ I am Alive
 
 *Create a cron-job that will publish a message to the `mqtt.devbit.be` broker on the topic `linux/alive/<yourname>` every 15th minute of the day. You can use the `mosquitto_pub` command for this.*
+
+Crontab entry:
+
+```bash
+15 * * * * mosquitto_pub -h 141.105.126.62 -m "JensVA" -t linux/alive/ -d
+```
 
 ### ❌ My IP
 
