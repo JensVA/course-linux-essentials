@@ -146,9 +146,20 @@ Crontab entry:
 15 * * * * mosquitto_pub -h 141.105.126.62 -m "JensVA" -t linux/alive/ -d
 ```
 
-### ❌ My IP
+### ✅ My IP
 
 *Create a cron-job that will publish your raspberry pi's IP address to the `mqtt.devbit.be` broker on the topic `linux/ip/<yourname>` every minute. You can use the `mosquitto_pub` command for this.*
+
+Script:
+
+```shell
+ip=$(hostname -I | cut -f1 -d' ')
+mosquitto_pub -h 141.105.126.62 -m "${ip}" -t linux/ip/jensva -d;
+```
+
+```bash
+* * * * * * /home/jens/scripts/myip
+```
 
 ### ✅ Backup Home
 

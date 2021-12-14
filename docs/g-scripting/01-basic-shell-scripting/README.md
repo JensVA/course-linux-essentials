@@ -724,13 +724,14 @@ fi
 [jensva@LEGION-Y540-JENS][~]$ code dhcp
 ```
 
-I don't really understand to what they need to match.
-
-Script:
+I tried to get the IP-address with 'grep', but dhcpdump never stops outputting. My script looked like this:
 
 ```shell
-
+ip=$(sudo dhcpdump -i wlan0 | grep --line-buffered -E -o '[0-9]{2,3}\.[0-9]{1,3}\.[0-9]{1}\.[0-9]{2,3}')
+echo "${ip}"
 ```
+
+The echo will never return. However, if I execute the command in the terminal, it does show the ip address.
 
 ### ✅ Backups
 

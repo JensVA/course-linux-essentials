@@ -273,11 +273,18 @@ jens@waterbeer:~ $ docker run hello-world
 jens@waterbeer:~ $ docker ps
 ```
 
-### ❌ Hello API from RPi
+### ✅ Hello API from RPi
 
 *Setup the hello-node-api on the Raspberry Pi as a docker container. Make sure it runs on port 8000.*
 
 *You can find the repository at [https://github.com/BioBoost/linux-essentials-docker-hello-node-api](https://github.com/BioBoost/linux-essentials-docker-hello-node-api)*.
+
+```bash
+jens@waterbeer:~ $ git clone https://github.com/BioBoost/linux-essentials-docker-hello-node-api.git
+jens@waterbeer:~ $ cd linux-essentials-docker-hello-node-api
+jens@waterbeer:~/linux-essentials-docker-hello-node-api $ docker build --tag hello-api .
+jens@waterbeer:~/linux-essentials-docker-hello-node-api $ docker run -d --name hello-from-node -p 8000:8000 hello-api
+```
 
 ### ✅ Node-RED on RPi
 
